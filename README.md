@@ -50,7 +50,7 @@ git clone https://github.com/your-username/snappy.git
 cd snappy
 ```
 
-### 2. ** Backend Setup (Server Folder)**  
+### 2. **Backend Setup (Server Folder)**  
 Navigate to the server directory and set up the backend:
 ```bash  
 cd server  
@@ -66,7 +66,7 @@ Start the server using nodemon:
 ```bash
 nodemon app.js
 ```
-### 3. ** Frontend Setup (Public Folder)**
+### 3. **Frontend Setup (Public Folder)**
 Navigate to the public directory and set up the React app:
 ```bash
 cd ../public  
