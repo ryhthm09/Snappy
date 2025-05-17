@@ -7,9 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Buffer } from "buffer";
 import { setAvatarRoute } from "../utils/APIRoutes";
+import multiavatar from "@multiavatar/multiavatar"; // Importing the Multiavatar library
 
 export default function SetAvatar() {
-  const api = "https://api.multiavatar.com/45678945";
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +22,7 @@ export default function SetAvatar() {
     draggable: true,
     theme: "dark",
   };
+
   useEffect(() => {
     const checkUser = async () => {
       if (!localStorage.getItem("chat-app-user")) {
@@ -47,7 +48,7 @@ export default function SetAvatar() {
         localStorage.setItem("chat-app-user", JSON.stringify(user));
         navigate("/");
       } else {
-        toast.error("Error Setting Avatar.Please Try Again", toastOptions);
+        toast.error("Error Setting Avatar. Please Try Again", toastOptions);
       }
     }
   };
@@ -55,11 +56,9 @@ export default function SetAvatar() {
   useEffect(() => {
     const fetchAvatars = async () => {
       const data = [];
-      for (let i = 0; i <= 4; i++) {
-        const image = await axios.get(
-          `${api}/${Math.round(Math.random() * 1000)}`
-        );
-        const buffer = Buffer.from(image.data);
+      for (let i = 0; i < 4; i++) {
+        const avatarSvg = multiavatar(Math.random().toString(36).substring(7)); // Generate a random avatar
+        const buffer = Buffer.from(avatarSvg);
         data.push(buffer.toString("base64"));
       }
       setAvatars(data);
