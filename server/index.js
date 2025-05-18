@@ -42,7 +42,7 @@ app.use("/api/messages", messageRoutes);
   const CORS_ORIGIN = CORS_ORIGIN_SECRET.value;
 
 
-  app.use(express.static("public/build"));
+  app.use(express.static("./public/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "build", "index.html"));
   });
